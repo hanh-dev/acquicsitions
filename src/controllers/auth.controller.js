@@ -72,7 +72,6 @@ export const signin = async (req, res) => {
 
     cookies.set(res, 'token', token);
 
-    // Don't return password in response
     const { password: _, ...userResponse } = user;
 
     res.status(200).json({
