@@ -13,6 +13,29 @@ export const hashPassword = async (password) => {
   }
 };
 
+export const comparePassword = async (plainPassword, hashedPassword) => {
+  try {
+    return await bcrypt.compare(plainPassword, hashedPassword);
+  } catch (error) {
+    logger.error('Error comparing password:', error);
+    throw new Error('Error verifying password');
+  }
+};
+
+export const findUserByEmail = async (email) => {
+  try {
+    const [user] = await db
+      .select()
+      .from(User)
+      .where(eq(User.email, email))
+      .limit(1);
+    return user || null;
+  } catch (error) {
+    logger.error('Error finding user:', error);
+    throw new Error('Error finding user');
+  }
+};
+
 export const createNewUser = async ({ name, email, password, role }) => {
   try {
     const existingUser = await db
