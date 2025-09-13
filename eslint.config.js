@@ -1,9 +1,13 @@
 import js from '@eslint/js';
+import unusedImports from 'eslint-plugin-unused-imports';
 
 export default [
   js.configs.recommended,
 
   {
+    plugins: {
+      'unused-imports': unusedImports,
+    },
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
@@ -32,7 +36,14 @@ export default [
       'object-curly-spacing': ['error', 'always'],
       'array-bracket-spacing': ['error', 'never'],
       'no-console': 'off',
-      'no-unused-vars': ['warn', { args: 'none' }],
+
+      'no-unused-vars': 'off',
+      'unused-imports/no-unused-imports': 'error',
+      'unused-imports/no-unused-vars': [
+        'warn',
+        { vars: 'all', varsIgnorePattern: '^_', argsIgnorePattern: '^_' },
+      ],
+
       'no-var': 'error',
       'prefer-const': 'error',
       'object-shorthand': ['error', 'always'],

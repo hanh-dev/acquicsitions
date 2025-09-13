@@ -23,6 +23,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/health', (req, res) => {
+  logger.info('Health check OK');
   res.status(200).send({ status: 'OK', time: new Date().toISOString(), uptime: process.uptime() });
 });
 

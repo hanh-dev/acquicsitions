@@ -1,10 +1,9 @@
+import { signup } from '#controllers/auth.controller.js';
 import express from 'express';
 
 const router = express.Router();
 
-router.post('/sign-up', (req, res) => {
-  res.send({ message: 'User signed up successfully' });
-});
+router.post('/sign-up', (req, res) => signup(req, res));
 router.post('/sign-in', (req, res) => {
   res.send({ message: 'User signed in successfully' });
 });
